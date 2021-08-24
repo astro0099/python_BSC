@@ -291,13 +291,15 @@ class Client(BaseClient):
     def __init__(
         self, api_key: Optional[str] = None, api_secret: Optional[str] = None,
         requests_params: Dict[str, str] = None, tld: str = 'com',
-        testnet: bool = False
+        testnet: bool = False,
+        ping: bool = False
     ):
 
         super().__init__(api_key, api_secret, requests_params, tld, testnet)
 
         # init DNS and SSL cert
-        self.ping()
+        if ping:
+            self.ping()
 
     def _init_session(self) -> requests.Session:
 
